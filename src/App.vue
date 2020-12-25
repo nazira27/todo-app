@@ -13,8 +13,6 @@ export default {
       return this.$vuetify.theme.dark ? "dark" : "light";
     },
   },
-  methods: {},
-  mounted() {},
 };
 </script>
 

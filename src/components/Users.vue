@@ -68,22 +68,6 @@
           </v-col>
         </v-row>
 
-        <!-- <v-data-table
-          v-if="show && users.length && !filter"
-          :headers="headers"
-          :items="users"
-        >
-          <template v-slot:item.edit="{ item }">
-            <v-btn color="primary" dark fab small @click="editItem(item)">
-              <v-icon>mdi-lead-pencil</v-icon>
-            </v-btn>
-          </template>
-          <template v-slot:item.delete="{ item }">
-            <v-btn @click="handleDelete(item)" color="pink" dark fab small>
-              <v-icon>mdi-delete</v-icon>
-            </v-btn>
-          </template>
-        </v-data-table> -->
         <v-data-table
           v-if="show && items.length"
           :headers="headers"
@@ -111,7 +95,6 @@ export default {
   name: "Banner",
   data() {
     return {
-      filter: false,
       search: {
         title: "",
         body: "",
@@ -146,7 +129,7 @@ export default {
         { text: "9", value: 9 },
         { text: "10", value: 10 },
       ],
-      items: []
+      items: [],
     };
   },
   computed: {
@@ -154,34 +137,34 @@ export default {
   },
   watch: {
     users(value) {
-      this.items = value
-    }
+      this.items = value;
+    },
   },
   methods: {
     ...mapActions(["usersList"]),
     searchInBody() {
-      this.search.resultBody = []
-      let toSearch = this.search.body
+      this.search.resultBody = [];
+      let toSearch = this.search.body;
       for (var i = 0; i < this.users.length; i++) {
-          if (this.users[i].body.indexOf(toSearch) != -1) {
-            console.log(toSearch)
-            this.search.resultBody.push(this.users[i]);
-          }
+        if (this.users[i].body.indexOf(toSearch) != -1) {
+          console.log(toSearch);
+          this.search.resultBody.push(this.users[i]);
+        }
       }
-      this.items = this.search.resultBody
-      console.log(this.items, this.show, 'search')
+      this.items = this.search.resultBody;
+      console.log(this.items, this.show, "search");
     },
     searchInTitle() {
-      this.search.resultTitle = []
-      let toSearch = this.search.title
+      this.search.resultTitle = [];
+      let toSearch = this.search.title;
       for (var i = 0; i < this.users.length; i++) {
-          if (this.users[i].title.indexOf(toSearch) != -1) {
-            console.log(toSearch)
-            this.search.resultTitle.push(this.users[i]);
-          }
+        if (this.users[i].title.indexOf(toSearch) != -1) {
+          console.log(toSearch);
+          this.search.resultTitle.push(this.users[i]);
+        }
       }
-      this.items = this.search.resultTitle
-      console.log(this.items, 'search',  this.show)
+      this.items = this.search.resultTitle;
+      console.log(this.items, "search", this.show);
     },
     getUserById() {
       this.items = [];
@@ -208,11 +191,11 @@ export default {
     },
     handleDelete(item) {
       let deleteIndex = this.users.indexOf(item);
-      // this.items.splice(deleteIndex, 1)
       this.users.splice(deleteIndex, 1);
     },
   },
   mounted() {
+     this.items = this.users;
     if (this.$route.query.show) {
       this.show = this.$route.query.show;
     }
@@ -225,28 +208,10 @@ export default {
 }
 </style>
 <style scoped>
-h1 {
-  z-index: 10000;
-}
-p {
-  z-index: 10000;
-}
 .banner {
   min-height: 70vh;
-}
-.banner >>> .v-image__image--cover {
-  filter: brightness(0.5);
-}
-.banner {
   position: relative;
   background-repeat: no-repeat;
-}
-
-.main {
-  margin-top: 20%;
-}
-.banner:before {
-  filter: brightness(0.5);
 }
 .text-center {
   text-align: center;

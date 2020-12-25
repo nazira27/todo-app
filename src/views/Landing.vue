@@ -1,21 +1,21 @@
 <template>
   <div>
     <Header></Header>
-     <Users />
+    <Users />
     <Footer></Footer>
   </div>
 </template>
 <script>
-import Header from "@/components/LandingPage/Header";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Users from "@/components/Users";
 
-import Footer from "@/components/LandingPage/Footer";
-import Users from "@/components/LandingPage/Users" 
 export default {
   name: "Landing",
   components: {
     Users,
     Header,
     Footer,
-  }
+  },
 };
 </script>
